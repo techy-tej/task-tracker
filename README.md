@@ -1,6 +1,6 @@
 # Task Tracker & Productivity Analytics Dashboard
 
-A calm, editorial-inspired single-page **Task Tracker** built with **React**, **Tailwind CSS v4**, and **Bun**. Designed to help you organize daily tasks by priority, track real-time completion metrics, and switch effortlessly between warm alabaster **Light Mode** and charcoal **Dark Mode**.
+A calm, editorial-inspired single-page **Task Tracker** built with **React**, **Tailwind CSS v4**, and **Bun**. Designed to help you organize daily tasks by priority, track real-time completion metrics, and adapt seamlessly between warm alabaster **Light Mode** and charcoal **Dark Mode**.
 
 ---
 
@@ -18,8 +18,9 @@ A calm, editorial-inspired single-page **Task Tracker** built with **React**, **
   - Toggleable **Sort by Priority (`High → Medium → Low`)** powered by `useMemo`.
 - **Real-Time Productivity Analytics**
   - Live summary displaying **Total Tasks**, **Pending Tasks**, **Completed Tasks**, and **Completion Percentage** visualized with an animated SVG progress ring and contextual encouragement messages.
-- **Light & Dark Theme Support**
-  - Automatically detects your system color scheme on first visit and provides a header toggle to switch between warm alabaster light mode and deep stone dark mode.
+- **Time-Aware Adaptive Theme & Header**
+  - Automatically defaults to **Dark Mode** during evening/night hours (`6:00 PM – 6:00 AM`) or when your system prefers dark mode, while allowing manual override anytime via the header toggle.
+  - Displays a dynamic time-of-day greeting alongside a `<Sun />` or `<Moon />` date indicator.
 
 ---
 
@@ -30,16 +31,18 @@ The application follows a modular component structure inside `src/`:
 ```text
 task-tracker/
 ├── public/
+│   └── favicon.svg          # Custom SVG favicon
 ├── src/
 │   ├── components/
-│   │   ├── Analytics.jsx    # Real-time stats, animated SVG ring, & encouragement banner
-│   │   ├── TaskForm.jsx     # Controlled form with validation & priority dropdown
-│   │   ├── TaskItem.jsx     # Individual task card with completion toggle & delete action
-│   │   └── TaskList.jsx     # Filtered/sorted task list & warm empty-state view
-│   ├── App.jsx              # Root state, localStorage sync, theme toggle, filtering & sorting
-│   ├── index.css            # Tailwind CSS v4 import & class-based dark mode variant
+│   │   ├── Analytics.jsx    # Real-time stats, SVG ring & encouragement banner
+│   │   ├── TaskForm.jsx     # Task creation form with validation & priority
+│   │   ├── TaskItem.jsx     # Individual task card with toggle & delete
+│   │   └── TaskList.jsx     # Filtered/sorted list & empty-state view
+│   ├── App.jsx              # Root state, theme toggle, filtering & sorting
+│   ├── index.css            # Tailwind CSS v4 import & dark mode variant
 │   └── main.jsx             # React DOM entry point
 ├── index.html
+├── oxlint.json              # Generated if Oxlint was selected in create-vite
 ├── package.json
 ├── vite.config.js
-└── README.md# task-tracker
+└── README.md
