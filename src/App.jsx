@@ -81,10 +81,12 @@ function App() {
     setTasks((prev) => prev.filter((task) => task.id !== taskId));
   };
 
+  const currentHour = new Date().getHours();
+  const isEveningOrNight = currentHour >= 18 || currentHour < 6;
+
   const getGreeting = () => {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
+    if (currentHour < 12) return 'Good morning';
+    if (currentHour < 18) return 'Good afternoon';
     return 'Good evening';
   };
 
@@ -124,7 +126,11 @@ function App() {
         <header className="mb-8 flex items-start sm:items-end justify-between gap-4">
           <div>
             <p className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest text-stone-400 dark:text-stone-500 mb-1.5">
-              <Sun className="w-3.5 h-3.5 text-amber-500" />
+              {isEveningOrNight ? (
+                <Moon className="w-3.5 h-3.5 text-indigo-400" />
+              ) : (
+                <Sun className="w-3.5 h-3.5 text-amber-500" />
+              )}
               {formattedDate}
             </p>
             <h1 className="text-2xl sm:text-3xl font-bold text-stone-900 dark:text-stone-50 tracking-tight">
