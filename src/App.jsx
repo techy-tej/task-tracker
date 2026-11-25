@@ -35,6 +35,9 @@ const INITIAL_TASKS = [
 ];
 
 function App() {
+  const currentHour = new Date().getHours();
+  const isEveningOrNight = currentHour >= 18 || currentHour < 6;
+
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('human_task_tracker_v1');
     return saved ? JSON.parse(saved) : INITIAL_TASKS;
@@ -43,7 +46,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('task_tracker_theme');
     if (savedTheme) return savedTheme === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isEveningOrNight || window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
   const [filterStatus, setFilterStatus] = useState('All');
@@ -80,9 +83,6 @@ function App() {
   const handleDeleteTask = (taskId) => {
     setTasks((prev) => prev.filter((task) => task.id !== taskId));
   };
-
-  const currentHour = new Date().getHours();
-  const isEveningOrNight = currentHour >= 18 || currentHour < 6;
 
   const getGreeting = () => {
     if (currentHour < 12) return 'Good morning';
