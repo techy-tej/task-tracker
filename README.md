@@ -31,7 +31,7 @@ The application follows a modular component structure inside `src/`:
 ```text
 task-tracker/
 ├── public/
-│   └── favicon.svg          # Custom SVG favicon
+│   └── favicon.svg
 ├── src/
 │   ├── components/
 │   │   ├── Analytics.jsx    # Real-time stats, SVG ring & encouragement banner
@@ -42,7 +42,7 @@ task-tracker/
 │   ├── index.css            # Tailwind CSS v4 import & dark mode variant
 │   └── main.jsx             # React DOM entry point
 ├── index.html
-├── oxlint.json              # Generated if Oxlint was selected in create-vite
+├── oxlint.json              # Generated because Oxlint was selected in create-vite
 ├── package.json
 ├── vite.config.js
 └── README.md
